@@ -9,7 +9,10 @@ import sample.dao.EmployeeDao;
 import sample.entity.Employee;
 
 @Service
-public class EmployeeService {
+public class EmployeeService {String queryStr = "select name, email, headline, phone_no from employee where lower(name) like ?";
+try {
+    Query query = entityManager.createNativeQuery(queryStr);
+    query.setParameter(1, "%" + name.toLowerCase() + "%");
 
 	@Inject
 	protected EmployeeDao employeeDao;
